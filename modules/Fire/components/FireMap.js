@@ -13,21 +13,21 @@ class FireMap extends PureComponent {
   state = {
     polygon: [
       {
-        latitude: 37.78981164138183,
-        longitude: -122.41481444962847
+        latitude: 55.76488919564486,
+        longitude: 37.583707704221766
       },
       {
-        latitude: 37.78191895438809,
-        longitude: -122.41693367922169
+        latitude: 55.76427352520776,
+        longitude: 37.58585373201755
       },
       {
-        latitude: 37.78669235058658,
-        longitude: -122.42387415797538
+        latitude: 55.762595472110796,
+        longitude: 37.58415818454733
       },
       {
-        latitude: 37.79615448710348,
-        longitude: -122.42556954028406
-      },
+        latitude: 55.76304215516818,
+        longitude: 37.57926470577249
+      }
     ]
   }
   constructor(props) {
@@ -63,11 +63,11 @@ class FireMap extends PureComponent {
               longitudeDelta: 0.0421
             }}
           >
-          <Polygon 
-            coordinates={this.state.polygon}
-            fillColor='rgba(100, 0, 20, 0.5)'
-            strokeColor='rgba(100, 0, 20, 0.5)'
-          />
+            <Polygon
+              coordinates={this.state.polygon}
+              fillColor='rgba(100, 0, 20, 0.5)'
+              strokeColor='rgba(100, 0, 20, 0.5)'
+            />
             {
               fireMarker && <FireMarker
                 latitude={fireMarker.latitude}
