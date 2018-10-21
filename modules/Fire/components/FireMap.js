@@ -12,32 +12,29 @@ class FireMap extends PureComponent {
   constructor(props) {
     super(props)
     this.getPremissions = this.getPremissions.bind(this)
-    this.onMapPress = this.onMapPress.bind(this)
   }
+
   componentDidMount() {
     this.getPremissions()
   }
+
   async getPremissions() {
     let { status } = await Permissions.askAsync(Permissions.LOCATION)
     if (status === 'granted') {
       const location = await Location.getCurrentPositionAsync({})
-      this.setState({ location })
+      this.props.changeLocation(location)
     }
   }
-  onMapPress(e) {
-    this.setState({
-      fireMarker: e.nativeEvent.coordinate
-    })
-  }
+
   render() {
-    const { location, fireMarker } = this.state
+    const { location, fireMarker } = this.props
     return (
       <Container style={styles.container}>
         {
           location && <MapView
             showsUserLocation
             style={styles.map}
-            onPress={this.onMapPress}
+            onPress={this.props.changeFireMarker}
             initialRegion={{
               latitude: location.coords.latitude,
               longitude: location.coords.longitude,
@@ -68,7 +65,11 @@ class FireMap extends PureComponent {
 }
 
 FireMap.propTypes = {
-  onButtonPress: PropTypes.func.isRequired
+  onButtonPress: PropTypes.func.isRequired,
+  location: PropTypes.object,
+  fireMarker: PropTypes.object,
+  changeLocation: PropTypes.func,
+  changeFireMarker: PropTypes.func
 }
 
 const styles = {

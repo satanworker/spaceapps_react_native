@@ -12,6 +12,7 @@ class GeolocationForm extends PureComponent {
   constructor(props) {
     super(props)
     this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
   handleInputChange(name, value) {
     this.setState({
@@ -19,7 +20,14 @@ class GeolocationForm extends PureComponent {
     })
   }
   handleFormSubmit() {
-    console.log(this.state.notes, this.state.file, 'formValue')
+    const { fireMarker, location } = this.props
+    this.props.postFire({
+      fireLattitude: fireMarker.latitude,
+      fireLongitude: fireMarker.longitude,
+      userLatitude: location.coords.latitude,
+      userLongitude: location.coords.longitude,
+      notes: this.state.notes
+    })
   }
   render() {
     return (
@@ -46,7 +54,10 @@ class GeolocationForm extends PureComponent {
 }
 
 GeolocationForm.propTypes = {
-  isVisible: PropTypes.bool.isRequired
+  isVisible: PropTypes.bool.isRequired,
+  postFire: PropTypes.func.isRequired,
+  location: PropTypes.object,
+  fireMarker: PropTypes.object
 }
 
 export default GeolocationForm
