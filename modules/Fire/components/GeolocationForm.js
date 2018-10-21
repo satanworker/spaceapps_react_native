@@ -25,8 +25,7 @@ class GeolocationForm extends PureComponent {
       fireLattitude: fireMarker.latitude,
       fireLongitude: fireMarker.longitude,
       userLatitude: location.coords.latitude,
-      userLongitude: location.coords.longitude,
-      notes: this.state.notes
+      userLongitude: location.coords.longitude
     })
   }
   render() {
