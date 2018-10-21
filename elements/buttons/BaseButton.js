@@ -5,7 +5,8 @@ import { Button } from 'react-native'
 
 class BaseButton extends PureComponent {
   render() {
-    return <Button {...this.props} /> 
+    const { style, ...rest } = this.props
+    return <Button style={style} {...rest} />
   }
 }
 

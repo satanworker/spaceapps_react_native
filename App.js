@@ -13,6 +13,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.openModal = this.openModal.bind(this)
+    this.closeModal = this.closeModal.bind(this)
     this.changeMapLocation = this.changeMapLocation.bind(this)
     this.changeFireMarker = this.changeFireMarker.bind(this)
   }
@@ -20,6 +21,12 @@ export default class App extends React.Component {
   openModal() {
     this.setState({
       isModalVisible: true
+    })
+  }
+
+  closeModal () {
+    this.setState({
+      isModalVisible: false
     })
   }
 
@@ -48,6 +55,7 @@ export default class App extends React.Component {
           location={location}
           fireMarker={fireMarker}
           isVisible={this.state.isModalVisible}
+          close={this.closeModal}
         />
       </Container>
     );

@@ -11,12 +11,12 @@ class Text extends PureComponent {
     this.props.onChange(this.props.name, value)
   }
   render() {
-    const { handleChange, value, ...rest } = this.props
+    const { handleChange, value, style, ...rest } = this.props
     return (
       <TextInput
         onChangeText={handleChange}
         value={value}
-        style={styles.input}
+        style={{...styles.input, ...style}}
         {...rest}
       />
     )

@@ -5,8 +5,13 @@ import httpService from '../../services/httpService'
 
 const postFire = function* ({ payload }) {
   yield put(fireToggleLoading(true))
-  const res = yield call(httpService.postFire, payload)
-  console.log(res, 'res')
+  try {
+    const res = yield call(httpService.postFire, payload)
+    console.log(res, 'res', payload)
+    yield put(fireToggleLoading(false))
+  } catch(e) {
+    yield put(fireToggleLoading(false))
+  }
   yield put(fireToggleLoading(false))
 }
 
